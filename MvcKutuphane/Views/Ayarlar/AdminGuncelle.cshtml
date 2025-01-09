@@ -1,0 +1,40 @@
+﻿@model MvcKutuphane.Models.Entity.TblAdmin
+@{
+    ViewBag.Title = "AdminGuncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("AdminGuncelle", "Ayarlar", FormMethod.Post))
+{
+    <div style="margin-top:15px;"></div>
+    <div style="margin-bottom: 15px;"></div>
+    <div class="form-group">
+        @Html.HiddenFor(x => x.id)
+        <label style="font-weight: bold;">#</label>
+        <br />
+        @Html.TextBoxFor(x => x.id, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label style="font-weight: bold;">Kullanici Adı</label>
+        <br />
+        @Html.TextBoxFor(x => x.kullaniciadi, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Şifre</label>
+        <br />
+        @Html.TextBoxFor(x => x.sifre, new { @class = "form-control" })
+        <div class="form-group">
+            <label style="font-weight: bold;">Yetki</label>
+            <br />
+            @Html.TextBoxFor(x => x.yetki, new { @class = "form-control" })
+        </div>
+    </div>
+    <br />
+    <div>
+        <button class="btn btn-success">Güncelle</button>
+        <input type="hidden" name="durum" value="True" />
+    </div>
+}
+
+

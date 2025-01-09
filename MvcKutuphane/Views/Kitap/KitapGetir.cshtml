@@ -1,0 +1,60 @@
+﻿@model MvcKutuphane.Models.Entity.TblKitap
+@{
+    ViewBag.Title = "KitapGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("KitapGuncelle", "Kitap", FormMethod.Post))
+{
+    <div style="margin-top:15px;"></div>
+    <div style="margin-bottom: 15px;"></div>
+    <div class="form-group">
+        @Html.HiddenFor(x => x.id)
+        <label style="font-weight: bold;">Kitap ID</label>
+        <br />
+        @Html.TextBoxFor(x => x.id, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label style="font-weight: bold;">Adı</label>
+        <br />
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Kategori</label>
+        <br />
+        @Html.DropDownListFor(x => x.TblKategori.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Yazarı</label>
+        <br />
+        @Html.DropDownListFor(x => x.TblYazar.id, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Basım Yılı</label>
+        <br />
+        @Html.TextBoxFor(x => x.basimtarih, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Yayın Evi</label>
+        <br />
+        @Html.TextBoxFor(x => x.yayinevi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label style="font-weight: bold;">Sayfa Sayısı</label>
+        <br />
+        @Html.TextBoxFor(x => x.sayfa, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Kitap Resmi</label>
+        <br />
+        @Html.TextBoxFor(x => x.kitapresim, new { @class = "form-control" })
+    </div>
+
+    <br />
+    <div>
+        <button class="btn btn-success">Güncelle</button>
+    </div>
+}
+

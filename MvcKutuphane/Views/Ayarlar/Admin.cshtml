@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using MvcKutuphane.Models.Entity
+@model List<TblAdmin>
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+<br />
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Kullanıcı</th>
+            <th>Yetki</th>
+            <th class="text-center">Sil</th>
+            <th class="text-center">Düzenle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.kullaniciadi</td>
+                <td>@item.yetki</td>
+                <td class="text-center">
+                    <a class="btn btn-danger btn-sm" href="/Ayarlar/AdminSil/@item.id">Sil</a>
+                </td>
+                <td class="text-center">
+                    <a class="btn btn-warning btn-sm" href="/Ayarlar/AdminGuncelle/@item.id">Düzenle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Yeni Admin Ekle</button>
+
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="exampleModalCenterTitle">Yeni Admin Ekle</h4>
+            </div>
+            <form method="post" action="/Ayarlar/YeniAdmin/">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="kullaniciadi">Kullanıcı Adı:</label>
+                        <input type="text" name="kullaniciadi" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="sifre">Şifre:</label>
+                        <input type="password" name="sifre" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="yetki">Yetki:</label>
+                        <input type="text" name="yetki" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".delete-button").click(function () {
+            var id = $(this).data("id");
+            if (confirm("Bu admini silmek istediğinize emin misiniz?")) {
+                console.log("Silme işlemi başarılı, ID: " + id);
+            }
+        });
+    });
+</script>

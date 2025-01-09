@@ -1,0 +1,39 @@
+﻿@model MvcKutuphane.Models.Entity.TblDuyurular
+@{
+    ViewBag.Title = "DuyuruDetay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("DuyuruGuncelle", "Duyuru", FormMethod.Post))
+{
+    <div style="margin-top:15px;"></div>
+    <div style="margin-bottom: 15px;"></div>
+    <div class="form-group">
+        @Html.HiddenFor(x => x.id)
+        <label style="font-weight: bold;">ID</label>
+        <br />
+        @Html.TextBoxFor(x => x.id, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label style="font-weight: bold;">Duyuru Başlığı</label>
+        <br />
+        @Html.TextBoxFor(x => x.kategori, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Duyuru İçeriği</label>
+        <br />
+        @Html.TextBoxFor(x => x.icerik, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Duyuru Tarihi</label>
+        <br />
+        @Html.TextBoxFor(x => x.tarih, new { @class = "form-control" })
+    </div>
+    <br />
+    <div>
+        <button class="btn btn-success">Güncelle</button>
+    </div>
+}
+
+

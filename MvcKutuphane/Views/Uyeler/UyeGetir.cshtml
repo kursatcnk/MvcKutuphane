@@ -1,0 +1,64 @@
+﻿@model MvcKutuphane.Models.Entity.TblUyeler
+@{
+    ViewBag.Title = "UyeGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("UyeGuncelle", "Uyeler", FormMethod.Post))
+{
+    <div style="margin-top:15px;"></div>
+    <div style="margin-bottom: 15px;"></div>
+    <div class="form-group">
+        @Html.HiddenFor(x => x.id)
+        <label style="font-weight: bold;">#</label>
+        <br />
+        @Html.TextBoxFor(x => x.id, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label style="font-weight: bold;">Üye Adı</label>
+        <br />
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label style="font-weight: bold;">Üye Soyadı</label>
+        <br />
+        @Html.TextBoxFor(x => x.soyad, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Kullanıcı Adı</label>
+        <br />
+        @Html.TextBoxFor(x => x.kullaniciAdi, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Şifre</label>
+        <br />
+        @Html.TextBoxFor(x => x.sifre, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Mail Adresi</label>
+        <br />
+        @Html.TextBoxFor(x => x.mail, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Okul</label>
+        <br />
+        @Html.TextBoxFor(x => x.okul, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Telefon</label>
+        <br />
+        @Html.TextBoxFor(x => x.telefon, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Fotoğraf Linki</label>
+        <br />
+        @Html.TextBoxFor(x => x.fotograf, new { @class = "form-control" })
+    </div>
+    <br />
+    <div>
+        <button class="btn btn-success">Güncelle</button>
+    </div>
+}
+

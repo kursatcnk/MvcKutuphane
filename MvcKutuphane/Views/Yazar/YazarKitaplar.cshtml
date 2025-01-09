@@ -1,0 +1,66 @@
+﻿@using MvcKutuphane.Models.Entity
+@model List<TblKitap>
+@{
+    ViewBag.Title = "YazarKitaplar";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    /* Tablo başlıklarının arka plan rengi ve yazı rengi */
+    .thead-dark th {
+        background-color: #f39c12; /* Turuncu tonu */
+        color: #ffffff; /* Beyaz renk */
+    }
+
+    /* Tablo satırlarının arka plan rengi */
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa; /* Açık gri tonu */
+    }
+
+    /* Satırın üzerine gelince hover etkisi */
+    .table-hover tbody tr:hover {
+        background-color: #e9ecef; /* Açık mavi tonu */
+        color: #f39c12; /* Yazı rengi turuncu */
+    }
+
+    /* Yazı büyütme ve alt çizgiyi kaldırma */
+    .zoom {
+        transition: transform 0.2s; /* Animasyon süresi */
+    }
+
+        .zoom:hover {
+            transform: scale(1.05); /* Hafif büyütme */
+        }
+
+    /* Tablo başlıklarında alt çizgiyi kaldırma */
+    .table th {
+        border-bottom: none;
+    }
+</style>
+
+<br />
+<h2>@ViewBag.yazarAd Yazarına Ait Kitaplar</h2>
+<br />
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Kitap Adı</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Yayın Evi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.ad</td>
+                    <td>@item.kategori</td>
+                    <td>@item.yayinevi</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

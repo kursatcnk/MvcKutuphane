@@ -1,0 +1,56 @@
+﻿@model MvcKutuphane.Models.Entity.TblHareket
+@{
+    ViewBag.Title = "OduncIade";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("OduncGuncelle", "Odunc", FormMethod.Post))
+{
+    <div style="margin-top:15px;"></div>
+    <div style="margin-bottom: 15px;"></div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Hareket ID</label>
+        @Html.TextBoxFor(x => x.id, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label style="font-weight: bold;">Kitap Adı</label>
+        <br />
+        @Html.TextBoxFor(x => x.TblKitap.ad, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Üye</label>
+        <br />
+        @Html.TextBoxFor(x => x.TblUyeler.ad, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Personel</label>
+        <br />
+        @Html.TextBoxFor(x => x.TblPersonel.personel, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">Alış Tarihi</label>
+        <br />
+        @Html.TextBoxFor(x => x.alistarih, "{0: dd.MM.yyyy}", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">İade Alınan Tarih</label>
+        <br />
+        @*<input type="text" class="form-control" name="uyegetirtarih" value="@DateTime.Now.ToShortDateString()" />*@
+        <input type="text" class="form-control" name="uyegetirtarih" value="@DateTime.Now.Day.ToString("00")/@DateTime.Now.Month.ToString("00")/@DateTime.Now.Year" />
+
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;">En Geç İade Tarihi</label>
+        <br />
+        @Html.TextBoxFor(x => x.iadetarih, "{0: dd.MM.yyyy}", new { @class = "form-control" })
+    </div>
+    <label>Geç Gelen Gün Sayısı</label>
+    <input  type="text" class="form-control"id="GecKutusu" value="@ViewBag.dgr"/>
+
+    <br />
+    <div>
+        <button class="btn btn-success">İade Al</button>
+    </div>
+}
+ 
