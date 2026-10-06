@@ -1,4 +1,5 @@
-﻿using MvcKutuphane.Models.Entity;
+﻿using MvcKutuphane.Models;
+using MvcKutuphane.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace MvcKutuphane.Controllers
         [HttpPost]
         public ActionResult YeniAdmin(TblAdmin p)
         {
+            p.sifre = Sifreleme.Ozetle(p.sifre ?? "");
             db.TblAdmins.Add(p);
             db.SaveChanges();
             return RedirectToAction("Admin");
@@ -46,7 +48,8 @@ namespace MvcKutuphane.Controllers
         {
             var admin = db.TblAdmins.Find(p.id);
             admin.kullaniciadi = p.kullaniciadi;
-            admin.sifre = p.sifre;
+            // Şifre alanı boş bırakılırsa mevcut şifre değişmiyor.
+            if (!string.IsNullOrWhiteSpace(p.sifre)) admin.sifre = Sifreleme.Ozetle(p.sifre);
             admin.yetki = p.yetki;
             db.SaveChanges();
             return RedirectToAction("Admin");

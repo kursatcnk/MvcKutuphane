@@ -27,7 +27,7 @@
     </div>
     <div>
         <label>Şifre</label>
-        @Html.TextBoxFor(x => x.sifre, new { @class = "form-control" })
+        @Html.PasswordFor(x => x.sifre, new { @class = "form-control", autocomplete = "new-password" })
         @Html.ValidationMessageFor(x => x.sifre, "", new { @style = "color:red" })
     </div>
     <div>

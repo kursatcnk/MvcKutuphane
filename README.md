@@ -22,6 +22,16 @@ Gerekenler: Visual Studio (ASP.NET ve web geliştirme iş yükü), .NET Framewor
 2. `MvcKutuphane/Web.config` içindeki `DbMvcKutuphaneEntities` bağlantı dizesinde sunucu adını kendi sunucunla değiştir.
 3. `MvcKutuphane.sln` dosyasını açıp IIS Express ile çalıştır.
 
+## Güvenlik notları
+
+Projeyi sonradan elden geçirip şifre saklamayı düzelttim:
+
+- Şifreler artık düz metin değil, PBKDF2 (SHA-256, 100.000 tur, rastgele tuz) özeti olarak saklanıyor (`Models/Sifreleme.cs`). Girişte kullanıcı e-posta ya da kullanıcı adıyla bulunuyor, şifre kodda doğrulanıyor.
+- Yedekteki eski düz metin şifrelerle giriş yapılabiliyor; şifre ilk girişte özete çevriliyor.
+- Özet eski `varchar(20)` sütuna sığmadığı için uygulama açılırken `sifre` sütunlarını 100 karaktere çıkarıyor. Elle yapmak için `Database/sifre-kolonlari.sql`.
+- Şifreler artık hiçbir ekranda görünmüyor: üye listesindeki şifre sütunu kaldırıldı, düzenleme ekranlarında alan boş geliyor ve boş bırakılırsa şifre değişmiyor.
+- Aynı e-postayla ikinci üye kaydı açılamıyor.
+
 ## Lisans
 
 [MIT](LICENSE). `AdminLTE` klasörü kendi lisansıyla birlikte dağıtılıyor.

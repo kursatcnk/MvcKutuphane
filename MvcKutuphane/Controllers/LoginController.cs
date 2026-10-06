@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcKutuphane.Models;
 using MvcKutuphane.Models.Entity;
 using System.Web.Security;
 namespace MvcKutuphane.Controllers
@@ -22,9 +23,15 @@ namespace MvcKutuphane.Controllers
 
         public ActionResult GirisYap(TblUyeler p)
         {
-            var bilgiler = db.TblUyelers.FirstOrDefault(x => x.mail == p.mail && x.sifre == p.sifre);
-            if (bilgiler != null)
+            // Şifre sorguda değil, burada özetle karşılaştırılıyor; eski düz metin kayıt ilk girişte özetleniyor.
+            var bilgiler = db.TblUyelers.FirstOrDefault(x => x.mail == p.mail);
+            if (bilgiler != null && Sifreleme.Dogrula(p.sifre, bilgiler.sifre))
             {
+                if (!Sifreleme.YeniBicimde(bilgiler.sifre))
+                {
+                    bilgiler.sifre = Sifreleme.Ozetle(p.sifre);
+                    db.SaveChanges();
+                }
                 FormsAuthentication.SetAuthCookie(bilgiler.mail, false);
                 Session["Mail"] = bilgiler.mail.ToString();
                 //TempData["Id"] = bilgiler.id.ToString();

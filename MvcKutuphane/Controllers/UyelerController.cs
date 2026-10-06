@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcKutuphane.Models;
 using MvcKutuphane.Models.Entity;
 using PagedList.Mvc;
 using PagedList;
@@ -29,6 +30,7 @@ namespace MvcKutuphane.Controllers
             {
                 return View("UyeEkle");
             }
+            p.sifre = Sifreleme.Ozetle(p.sifre ?? "");
             db.TblUyelers.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -52,7 +54,7 @@ namespace MvcKutuphane.Controllers
             uye.soyad = p.soyad;
             uye.mail = p.mail;
             uye.kullaniciAdi = p.kullaniciAdi;
-            uye.sifre = p.sifre;
+            if (!string.IsNullOrWhiteSpace(p.sifre)) uye.sifre = Sifreleme.Ozetle(p.sifre);
             uye.telefon = p.telefon;
             uye.okul = p.okul;
             db.SaveChanges();

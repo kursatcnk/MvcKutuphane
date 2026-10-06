@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using MvcKutuphane.Models;
 using MvcKutuphane.Models.Entity;
 namespace MvcKutuphane.Controllers
 {
@@ -19,9 +20,14 @@ namespace MvcKutuphane.Controllers
         [HttpPost]
         public ActionResult Login(TblAdmin p)
         {
-            var login = db.TblAdmins.FirstOrDefault(x => x.kullaniciadi == p.kullaniciadi && x.sifre == p.sifre);
-            if (login !=null)
+            var login = db.TblAdmins.FirstOrDefault(x => x.kullaniciadi == p.kullaniciadi);
+            if (login != null && Sifreleme.Dogrula(p.sifre, login.sifre))
             {
+                if (!Sifreleme.YeniBicimde(login.sifre))
+                {
+                    login.sifre = Sifreleme.Ozetle(p.sifre);
+                    db.SaveChanges();
+                }
                 FormsAuthentication.SetAuthCookie(login.kullaniciadi, false);
                 Session["Kullanici"]=login.kullaniciadi.ToString();
                 return RedirectToAction("Index", "Kitap");

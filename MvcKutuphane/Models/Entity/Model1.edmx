@@ -21,7 +21,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="kullaniciadi" Type="varchar" MaxLength="20" />
-          <Property Name="sifre" Type="varchar" MaxLength="20" />
+          <Property Name="sifre" Type="varchar" MaxLength="100" />
           <Property Name="yetki" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="TblCezalar">
@@ -131,7 +131,7 @@
           <Property Name="soyad" Type="varchar" MaxLength="20" />
           <Property Name="mail" Type="varchar" MaxLength="50" />
           <Property Name="kullaniciAdi" Type="varchar" MaxLength="20" />
-          <Property Name="sifre" Type="varchar" MaxLength="20" />
+          <Property Name="sifre" Type="varchar" MaxLength="100" />
           <Property Name="fotograf" Type="varchar" MaxLength="250" />
           <Property Name="telefon" Type="varchar" MaxLength="30" />
           <Property Name="okul" Type="varchar" MaxLength="100" />
@@ -369,7 +369,7 @@
           <Property Name="soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="kullaniciAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fotograf" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="telefon" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="okul" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -558,7 +558,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="kullaniciadi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="yetki" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
       </Schema>

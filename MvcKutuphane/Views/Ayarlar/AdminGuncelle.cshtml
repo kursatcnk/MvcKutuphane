@@ -23,7 +23,7 @@
     <div class="form-group">
         <label style="font-weight: bold;">Şifre</label>
         <br />
-        @Html.TextBoxFor(x => x.sifre, new { @class = "form-control" })
+        @Html.PasswordFor(x => x.sifre, new { @class = "form-control", placeholder = "Değiştirmek istemiyorsanız boş bırakın", autocomplete = "new-password" })
         <div class="form-group">
             <label style="font-weight: bold;">Yetki</label>
             <br />

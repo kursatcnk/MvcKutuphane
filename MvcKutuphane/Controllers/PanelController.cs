@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using MvcKutuphane.Models;
 using MvcKutuphane.Models.Entity;
 
 namespace MvcKutuphane.Controllers
@@ -52,7 +53,8 @@ namespace MvcKutuphane.Controllers
         {
             var kullanici = (string)Session["Mail"]; // Session'dan kullanıcının mail adresini alıyorum 
             var uye = db.TblUyelers.FirstOrDefault(x => x.mail == kullanici);  // Veritabanında kullanıcıyı buluyorum
-            uye.sifre = p.sifre;  // Ekrandan gelen şifreyle TblUyeler'in içindeki şifreyle değiştirir
+            // Yeni şifre yazıldıysa özetlenip kaydediliyor; boşsa eski şifre kalıyor.
+            if (!string.IsNullOrWhiteSpace(p.sifre)) uye.sifre = Sifreleme.Ozetle(p.sifre);
             uye.ad = p.ad;
             uye.soyad = p.soyad;
             uye.okul = p.okul;
